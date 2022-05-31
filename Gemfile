@@ -55,6 +55,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
   gem 'factory_bot_rails', '~> 6.2'
+  gem 'capybara'
 end
 
 group :development do
@@ -72,9 +73,9 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
 end
 
 gem 'devise'
