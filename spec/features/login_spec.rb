@@ -4,7 +4,7 @@ RSpec.describe 'Sign in process', type: :feature do
   before :each do
     visit new_user_session_path
   end
-  
+
   context 'when load the log in form, its fields and button' do
     it 'should be present' do
       email_field = find_field('Email')
@@ -15,7 +15,7 @@ RSpec.describe 'Sign in process', type: :feature do
       expect(submit_button).to_not be_nil
     end
   end
-  
+
   describe 'User login' do
     User.destroy_all
     let(:user) { FactoryBot.build(:user) }
@@ -36,7 +36,7 @@ RSpec.describe 'Sign in process', type: :feature do
     end
 
     context 'with incorret email' do
-      it "should return `Invalid Email or password.` message." do
+      it 'should return `Invalid Email or password.` message.' do
         fill_in 'user_email', with: 'wrong@example.com'
         click_button submit
         expect(page).to have_text('Invalid Email or password.')
@@ -52,7 +52,7 @@ RSpec.describe 'Sign in process', type: :feature do
     end
 
     context 'with incorret password' do
-      it "should return `Invalid Email or password.` message." do
+      it 'should return `Invalid Email or password.` message.' do
         fill_in 'user_password', with: 'wrong.password'
         click_button submit
         expect(page).to have_text('Invalid Email or password.')
@@ -60,7 +60,7 @@ RSpec.describe 'Sign in process', type: :feature do
     end
 
     context 'with complete and corret email and password' do
-      it "should return `Signed in successfully.` message." do
+      it 'should return `Signed in successfully.` message.' do
         click_button submit
         expect(current_path).to eq(root_path)
         expect(page).to have_text('Signed in successfully.')
