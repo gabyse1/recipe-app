@@ -72,8 +72,8 @@ RSpec.describe 'Sign up process.', type: :feature do
     end
 
     context 'with password length less that 6 characters' do
-      it "should return `Password is too short (minimum is 6 characters)` message." do
-        fill_in 'user_password', with: 'a'*5
+      it 'should return `Password is too short (minimum is 6 characters)` message.' do
+        fill_in 'user_password', with: 'a' * 5
         click_button 'Sign up'
         expect(page).to have_text('Password is too short (minimum is 6 characters)')
       end
@@ -81,7 +81,7 @@ RSpec.describe 'Sign up process.', type: :feature do
 
     context 'With different Password Confirmation' do
       it "should return `Password confirmation doesn't match Password` message." do
-        fill_in 'user_password_confirmation', with: 'b'*6
+        fill_in 'user_password_confirmation', with: 'b' * 6
         click_button 'Sign up'
         expect(page).to have_text("Password confirmation doesn't match Password")
       end
