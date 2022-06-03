@@ -26,7 +26,7 @@ RSpec.describe 'Food,', type: :feature do
   end
 
   describe 'Submit form' do
-    let!(:food) { create :food, user: user }
+    let!(:food) { create :food, user: }
     let!(:submit) { 'Save' }
 
     before :each do
@@ -44,7 +44,7 @@ RSpec.describe 'Food,', type: :feature do
     end
 
     context 'without measurement unit' do
-      it "should return `Measurement unit can't be blank` message."  do
+      it "should return `Measurement unit can't be blank` message." do
         fill_in 'food[measurement_unit]', with: nil
         click_button submit
         expect(page).to have_text("Measurement unit can't be blank")
@@ -52,7 +52,7 @@ RSpec.describe 'Food,', type: :feature do
     end
 
     context 'without price per unit' do
-      it "should return `Price can't be blank` message."  do
+      it "should return `Price can't be blank` message." do
         fill_in 'food[price]', with: nil
         click_button submit
         expect(page).to have_text("Price can't be blank")
@@ -60,15 +60,15 @@ RSpec.describe 'Food,', type: :feature do
     end
 
     context 'without numeric price' do
-      it "should return `Price is not a number` message."  do
+      it 'should return `Price is not a number` message.' do
         fill_in 'food[price]', with: 'aaa'
         click_button submit
-        expect(page).to have_text("Price is not a number")
+        expect(page).to have_text('Price is not a number')
       end
     end
 
     context 'with numeric price less than or equal to zero' do
-      it "should return `Price must be greater than 0` message."  do
+      it 'should return `Price must be greater than 0` message.' do
         fill_in 'food[price]', with: 'aaa'
         click_button submit
         expect(page).to have_text('Price must be greater than 0')

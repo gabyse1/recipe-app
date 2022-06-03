@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "Food,", type: :feature do
+RSpec.describe 'Food,', type: :feature do
   let!(:user) { create :user }
-  let!(:food) { create :food, user: user }
+  let!(:food) { create :food, user: }
 
   before :each do
     visit new_user_session_path
