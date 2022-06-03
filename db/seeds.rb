@@ -13,21 +13,23 @@
 # rails g model Inventory name:string user:references:index
 # rails g model InventoryFood quantity:decimal{10-2} inventory:references:index food:references:index
 
-u1 = User.create(name: 'user1')
-u2 = User.create(name: 'user2')
+u1 = User.create(name: 'user1', email: 'user1@gmail.com', password: 'aaaaaa', confirmed_at: Time.now)
+u2 = User.create(name: 'user2', email: 'user2@gmail.com', password: 'aaaaaa', confirmed_at: Time.now)
 
 food1 = Food.create(name: 'food1', measurement_unit: 'kile', price: 2.5, user: u1)
 food2 = Food.create(name: 'food2', measurement_unit: 'kile', price: 5.3, user: u1)
-food3 = Food.create(name: 'food3', measurement_unit: 'kile', price: 3.0, user: u2)
+food3 = Food.create(name: 'food3', measurement_unit: 'kile', price: 3.0, user: u1)
+food4 = Food.create(name: 'food4', measurement_unit: 'kile', price: 2.0, user: u2)
+food5 = Food.create(name: 'food5', measurement_unit: 'kile', price: 1.5, user: u2)
 
-inv1 = Inventory.create(name: 'inventory1', user: u1)
-inv2 = Inventory.create(name: 'inventory2', user: u1)
-
-if1 = InventoryFood.create(quantity: 2.5, inventory: inv1, food: food1)
-if2 = InventoryFood.create(quantity: 5, inventory: inv1, food: food2)
-
-rec1 = Recipe.create(name: 'recipe1', preparation_time: 1.5, cooking_time: 0.75, description: 'Recipe 1 steps', user: u1)
-rec2 = Recipe.create(name: 'recipe2', preparation_time: 2, cooking_time: 1, description: 'Recipe 2 steps', user: u1)
+rec1 = Recipe.create(name: 'recipe1', preparation_time: 1.5, cooking_time: 0.75, description: 'Recipe 1 steps', public: true, user: u1)
+rec2 = Recipe.create(name: 'recipe2', preparation_time: 2, cooking_time: 1, description: 'Recipe 2 steps', public: false, user: u1)
+rec3 = Recipe.create(name: 'recipe3', preparation_time: 2.5, cooking_time: 1.25, description: 'Recipe 3 steps', public: true, user: u2)
 
 rf1 = RecipeFood.create(quantity: 2, recipe: rec1, food: food1)
-rf2 = RecipeFood.create(quantity: 1, recipe: rec1, food: food2)
+rf2 = RecipeFood.create(quantity: 1.5, recipe: rec1, food: food2)
+rf3 = RecipeFood.create(quantity: 5, recipe: rec1, food: food3)
+rf4 = RecipeFood.create(quantity: 2.5, recipe: rec2, food: food1)
+rf5 = RecipeFood.create(quantity: 6, recipe: rec2, food: food3)
+rf6 = RecipeFood.create(quantity: 7, recipe: rec3, food: food4)
+rf7 = RecipeFood.create(quantity: 3.25, recipe: rec3, food: food5)
