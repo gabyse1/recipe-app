@@ -1,0 +1,27 @@
+<div class="box__buttons">
+  <%= link_to 'New Food', new_food_path, class: 'btn' %>
+</div>
+<div class="box__table">
+  <table>
+    <thead>
+    <tr>
+      <th><%= link_to 'FOOD', foods_path(order: (@f_order == 'asc' ? 'desc' : 'asc')) %></th>
+      <th>MEASUREMENT UNIT</th>
+      <th>PRICE</th>
+      <th>ACTIONS</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+          <td><%= food.name %></td>
+          <td><%= food.measurement_unit %></td>
+          <td><%= food.price %></td>
+          <td>
+            <%= button_to 'Delete', food_path(food.id), params: { food: { food_id: food.id } }, method: :delete, id: "btn__delete-food-#{food.id}" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
