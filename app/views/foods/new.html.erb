@@ -1,0 +1,9 @@
+<div class="form__container">
+<%= tag.h1('New Food', class: 'form__title') %>
+<%= form_for @food do |f| %>
+  <%= f.text_field :name, placeholder: 'Name' %>
+  <%= f.text_field :measurement_unit, placeholder: 'Measurement unit' %>
+  <%= f.text_field :price, placeholder: 'Price per unit' %>
+  <%= f.submit 'Save', class: 'btn' %>
+<% end %>
+</div>
