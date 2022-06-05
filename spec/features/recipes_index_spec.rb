@@ -11,7 +11,6 @@ RSpec.describe 'Recipe,', type: :feature do
     click_button 'Log in'
 
     visit recipes_path
-
   end
 
   context 'when loads the show page' do
