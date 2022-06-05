@@ -1,0 +1,12 @@
+<div class="card__box">
+  <div class="card__box-head">
+    <%= tag.h1(recipe.name, class: 'card__title') %>
+    <% if can? :destroy, recipe %>
+      <%= button_to 'Remove', recipe_path(recipe.id), params: { recipe: { recipe_id: recipe.id} }, method: :delete, class: 'link remove__link-float', id: "btn__delete-recipe-#{recipe.id}" %>
+    <% end %>
+  </div>
+  <div class="card__box-description">
+    <%= tag.p(recipe.description, class: ['card__text', ('truncated-text' unless detailed)]) %>
+  </div>
+  <%= link_to '', recipe_path(recipe.id), id: "link_recipe-#{recipe.id}", class: 'card__hidden-link' %>
+</div>

@@ -1,0 +1,14 @@
+<div class="form__container">
+<%= tag.h1('New Recipe', class: 'form__title') %>
+<%= form_for @recipe do |f| %>
+  <%= f.text_field :name, placeholder: 'Name' %>
+  <%= f.text_field :preparation_time, placeholder: 'Preparation time (hours)' %>
+  <%= f.text_field :cooking_time, placeholder: 'Cooking time (hours)' %>
+  <%= f.text_area :description, rows: 15, placeholder: 'Enter the description' %>
+  <div class="field">
+    <%= f.label :public %>
+    <%= f.check_box :public, {checked: true}, true, false %>
+  </div>
+  <%= f.submit 'Save', class: 'btn' %>
+<% end %>
+</div>

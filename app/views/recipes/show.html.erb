@@ -1,0 +1,59 @@
+<div class="recipe__details">
+  <%= tag.h1(@recipe.name) %>
+  <div class="recipe__info">
+    <div class="recipe__info-item">
+      <%= tag.span('Preparation time:') %>
+      <%= tag.p("#{@recipe.preparation_time} hours") %>
+    </div>
+    <div class="recipe__info-item">
+      <%= tag.span('Cooking time:') %>
+      <%= tag.p("#{@recipe.cooking_time} hours") %>
+    </div>
+    <div class="recipe__info-item">
+      <%= tag.span('Preparation steps:') %>
+      <%= @recipe.description %>
+    </div>
+    <div class="recipe__info-item public__item-float">
+      <%= tag.span('Public:') %>
+      <label class="toggle__switch">
+        <%= check_box_tag 'public_recipe', 'yes', @recipe.public, disabled: true %>
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div>
+  <div class="recipe__buttons">
+    <% if can? :destroy, @recipe %>
+      <%= link_to 'Generate shopping list', '', class: 'btn', id: 'link__shopping-list' %>
+      <%= link_to 'Add ingredient', '', class: 'btn', id: 'link__add-ingredient' %>
+    <% end %>
+  </div>
+  <div class="recipe__ingredients">
+    <table>
+      <thead>
+      <tr>
+        <th><%= link_to 'Food', recipe_path(@recipe.id, field: 'name', order: (@f_field == 'name' && @f_order == 'asc' ? 'desc' : 'asc')), class: 'link link__table-head' %></th>
+        <th><%= link_to 'Quantity', recipe_path(@recipe.id, field: 'quantity', order: (@f_field == 'quantity' && @f_order == 'asc' ? 'desc' : 'asc')), class: 'link link__table-head' %></th>
+        <th>Value</th>
+        <% if can? :destroy, @recipe %>
+        <th>Action</th>
+        <% end %>
+      </tr>
+      </thead>
+      <tbody>
+        <% @rec_foods.each do |rf| %>
+          <tr>
+            <td><%= rf.food.name %></td>
+            <td><%= rf.quantity %></td>
+            <td><%= "$ #{rf.quantity * rf.food.price}" %></td>
+            <% if can? :destroy, @recipe %>
+            <td class="table__actions">
+              <%= link_to 'Modify', '', class: 'link' %>
+              <%= button_to 'Remove', '', params: { recipe_food: { rf_id: rf.id }}, method: :delete, class: 'link' %>
+            </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
