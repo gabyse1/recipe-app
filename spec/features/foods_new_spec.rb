@@ -81,9 +81,9 @@ RSpec.describe 'Food,', type: :feature do
         expect(current_path).to eq(foods_path)
       end
 
-      it 'should return `Food created successfully.` message.' do
+      it 'should return `Food was successfully created.` message.' do
         click_button submit
-        expect(page).to have_text('Food created successfully.')
+        expect(page).to have_text('Food was successfully created.')
       end
     end
   end
